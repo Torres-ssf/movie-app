@@ -35,3 +35,9 @@ export const Container = styled.article`
     }
   }
 `;
+
+export const GenreContainer = styled.span`
+  font-size: 0.8rem;
+  margin-top: 8px;
+  color: #3899bf;
+`;
