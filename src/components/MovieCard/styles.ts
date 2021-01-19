@@ -1,27 +1,53 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.article`
+interface IContainerProps {
+  hasCoverImage: boolean;
+}
+
+export const Container = styled.article<IContainerProps>`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border-radius: 10px;
   position: relative;
   margin: 10px;
+  overflow: hidden;
+  transition: 500ms;
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  ${props => {
+    if (props.hasCoverImage) {
+      return css`
+        &:hover footer {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      `;
+    }
+    return css`
+      background-color: #3899bf;
+    `;
+  }}
 
   figure {
     img {
-      border-radius: 5px;
+      border-radius: 10px;
       object-fit: cover;
       max-width: 100%;
+      vertical-align: middle;
     }
   }
 
   footer {
     background: white;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 10px 10px;
     bottom: 0;
     left: 0;
     padding: 16px;
     position: absolute;
     width: 100%;
+    transition: 500ms;
 
     p {
       color: black;
@@ -37,6 +63,7 @@ export const Container = styled.article`
 `;
 
 export const GenreContainer = styled.span`
+  display: block;
   font-size: 0.8rem;
   margin-top: 8px;
   color: #3899bf;

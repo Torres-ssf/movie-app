@@ -1,20 +1,50 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+
+import { formatCardGenresString, getImageUrl } from '../../utils';
 
 import { Container, GenreContainer, MovieRate } from './styles';
 
-export const MovieCard: React.FC = () => {
+import CardPlaceholder from '../../assets/moviecard-placeholder.png';
+
+interface IProps {
+  id: number;
+  title: string;
+  genres: Array<number>;
+  posterPath: string | null;
+  voteAvarage: number;
+}
+
+export const MovieCard: React.FC<IProps> = ({
+  title,
+  genres,
+  posterPath,
+  voteAvarage,
+}) => {
+  const [moviePosterPath, setMoviePosterPath] = useState(posterPath);
+
+  const movieImage = useMemo(() => {
+    if (moviePosterPath) {
+      return getImageUrl(moviePosterPath);
+    }
+
+    return CardPlaceholder;
+  }, [moviePosterPath]);
+
+  const genreString = formatCardGenresString(genres);
+
   return (
-    <Container>
+    <Container hasCoverImage={!!moviePosterPath}>
       <figure>
         <img
-          src="https://image.tmdb.org/t/p/w342/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg"
-          alt="movie name"
+          src={movieImage}
+          alt={title}
+          onError={() => setMoviePosterPath(CardPlaceholder)}
         />
       </figure>
       <footer>
-        <p>Wonder Woman 1984 Wonder Woman 1984 Wonder Woman 1984 </p>
-        <GenreContainer>Adventure, Action</GenreContainer>
-        <MovieRate>7.8</MovieRate>
+        <p>{title}</p>
+        <GenreContainer>{genreString}</GenreContainer>
+        <MovieRate>{voteAvarage}</MovieRate>
       </footer>
     </Container>
   );
