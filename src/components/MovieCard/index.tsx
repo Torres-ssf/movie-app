@@ -11,6 +11,9 @@ export const MovieCard: React.FC = () => {
           alt="movie name"
         />
       </figure>
+      <footer>
+        <p>Wonder Woman 1984 Wonder Woman 1984 Wonder Woman 1984 </p>
+      </footer>
     </Container>
   );
 };
