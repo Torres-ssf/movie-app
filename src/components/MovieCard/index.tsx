@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, GenreContainer } from './styles';
+import { Container, GenreContainer, MovieRate } from './styles';
 
 export const MovieCard: React.FC = () => {
   return (
@@ -14,6 +14,7 @@ export const MovieCard: React.FC = () => {
       <footer>
         <p>Wonder Woman 1984 Wonder Woman 1984 Wonder Woman 1984 </p>
         <GenreContainer>Adventure, Action</GenreContainer>
+        <MovieRate>7.8</MovieRate>
       </footer>
     </Container>
   );

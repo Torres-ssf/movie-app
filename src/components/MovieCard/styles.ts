@@ -41,3 +41,17 @@ export const GenreContainer = styled.span`
   margin-top: 8px;
   color: #3899bf;
 `;
+
+export const MovieRate = styled.span`
+  border: 2px solid #3899bf;
+  border-radius: 4px;
+  color: #3899bf;
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  position: absolute;
+  margin-top: 8px;
+  right: 16px;
+  top: 8px;
+  padding: 4px 8px;
+`;
