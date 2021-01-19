@@ -11,3 +11,9 @@ export const formatCardGenresString = (genresArray: number[]): string => {
 
   return 'Genre not specified';
 };
+
+export const getImageUrl = (path: string): string => {
+  const imageBaseUrl = process.env.REACT_APP_API_IMAGE_URL;
+
+  return `${imageBaseUrl}/w342/${path}`;
+};
