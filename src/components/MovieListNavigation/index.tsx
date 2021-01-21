@@ -15,6 +15,19 @@ export const MovieListNavigation: React.FC<IProps> = ({
 }) => {
   return (
     <Container>
+      <select
+        value={selectedSortType}
+        onChange={e => handleSortTypeChange(e.target.value as SortType)}
+      >
+        <option value="popular">Popular</option>
+        <option value="top_rated">Top Rated</option>
+        <option value="upcoming">Upcoming</option>
+        <option value="now_playing">Now Playing</option>
+        <option value="unselected" hidden disabled>
+          Unselected
+        </option>
+      </select>
+
       <ul>
         <ListItem selected={selectedSortType === 'popular'}>
           <button type="button" onClick={() => handleSortTypeChange('popular')}>
