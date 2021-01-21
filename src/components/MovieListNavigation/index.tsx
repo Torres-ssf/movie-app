@@ -1,31 +1,50 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { SortType } from '../../pages/Main';
 
-export const MovieListNavigation: React.FC = () => {
+import { Container, ListItem } from './styles';
+
+interface IProps {
+  selectedSortType: SortType;
+  handleSortTypeChange: (type: SortType) => void;
+}
+
+export const MovieListNavigation: React.FC<IProps> = ({
+  selectedSortType,
+  handleSortTypeChange,
+}) => {
   return (
     <Container>
       <ul>
-        <li>
-          <button type="button" value="popular">
+        <ListItem selected={selectedSortType === 'popular'}>
+          <button type="button" onClick={() => handleSortTypeChange('popular')}>
             Popular
           </button>
-        </li>
-        <li>
-          <button type="button" value="top_rated">
+        </ListItem>
+        <ListItem selected={selectedSortType === 'top_rated'}>
+          <button
+            type="button"
+            onClick={() => handleSortTypeChange('top_rated')}
+          >
             Top Rated
           </button>
-        </li>
-        <li>
-          <button type="button" value="upcoming">
+        </ListItem>
+        <ListItem selected={selectedSortType === 'upcoming'}>
+          <button
+            type="button"
+            onClick={() => handleSortTypeChange('upcoming')}
+          >
             Upcoming
           </button>
-        </li>
-        <li>
-          <button type="button" value="now_playing">
+        </ListItem>
+        <ListItem selected={selectedSortType === 'now_playing'}>
+          <button
+            type="button"
+            onClick={() => handleSortTypeChange('now_playing')}
+          >
             Now Playing
           </button>
-        </li>
+        </ListItem>
       </ul>
     </Container>
   );
