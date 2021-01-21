@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../server/api';
 
-import { Container } from './styles';
+import { MovieCard } from '../../components/MovieCard';
+
+import { Container, MovieList } from './styles';
 
 export const Main: React.FC = () => {
   const [movies, setMovies] = useState([] as any[]);
@@ -20,13 +22,23 @@ export const Main: React.FC = () => {
     fetchMovieData();
   }, []);
 
-  const movieList = movies.map(movie => <li key={movie.id}>{movie.title}</li>);
+  const movieList = movies.map(movie => (
+    <li key={movie.id}>
+      <MovieCard
+        id={movie.id}
+        title={movie.title}
+        genres={movie.genre_ids}
+        posterPath={movie.poster_path}
+        voteAvarage={movie.vote_average}
+      />
+    </li>
+  ));
 
   return (
     <Container>
       <h1>Movie App</h1>
 
-      <ul>{movieList}</ul>
+      <MovieList>{movieList}</MovieList>
     </Container>
   );
 };
