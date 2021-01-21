@@ -5,13 +5,24 @@ interface IListItemProps {
 }
 
 export const Container = styled.nav`
-  height: 40px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
 
   ul {
     height: 100%;
     display: flex;
     border-bottom: 1px solid #3899bf;
     flex: 1;
+  }
+
+  select {
+    display: none;
+    background: white;
+    border: 2px solid #3899bf;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 1rem;
   }
 
   button {
@@ -23,6 +34,16 @@ export const Container = styled.nav`
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
+  }
+
+  @media (max-width: 700px) {
+    ul {
+      display: none;
+    }
+
+    select {
+      display: flex;
+    }
   }
 `;
 
