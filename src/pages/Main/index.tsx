@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { api } from '../../server/api';
 
 import { MovieListNavigation } from '../../components/MovieListNavigation';
@@ -13,26 +14,51 @@ export type SortType =
   | 'now_playing'
   | 'unselected';
 
+interface IMovieProperties {
+  id: number;
+  title: string;
+  poster_path: string;
+  backdrop_path: string;
+  genre_ids: Array<number>;
+  vote_average: number;
+}
+
 export const Main: React.FC = () => {
-  const [movies, setMovies] = useState([] as any[]);
+  const [movies, setMovies] = useState([] as IMovieProperties[]);
+
   const [sortType, setSortType] = useState<SortType>('popular');
+
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchMovieData = async () => {
-      const response = await api.get(`movie/${sortType}`);
+      const response = await api.get(`movie/${sortType}`, {
+        params: {
+          page: currentPage,
+        },
+      });
 
-      const {
-        data: { results },
-      } = response;
+      const { data } = response;
+
+      const { results } = data;
+
+      setTotalPages(data.total_pages);
 
       setMovies(results);
     };
 
     fetchMovieData();
-  }, [sortType]);
+  }, [sortType, currentPage]);
 
   const handleSortTypeChange = useCallback((type: SortType) => {
+    setCurrentPage(1);
     setSortType(type);
+  }, []);
+
+  const handlePageChange = useCallback(({ selected: pageSelected }) => {
+    setCurrentPage(pageSelected + 1);
   }, []);
 
   const movieList = movies.map(movie => (
@@ -50,11 +76,26 @@ export const Main: React.FC = () => {
   return (
     <Container>
       <h1>Movie App</h1>
+
       <MovieListNavigation
         selectedSortType={sortType}
         handleSortTypeChange={handleSortTypeChange}
       />
       <MovieList>{movieList}</MovieList>
+
+      <ReactPaginate
+        containerClassName="paginatate-list"
+        previousLabel="back"
+        nextLabel="next"
+        breakLabel="..."
+        breakClassName="break-me"
+        pageCount={totalPages}
+        forcePage={currentPage - 1}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={2}
+        activeClassName="active"
+        onPageChange={handlePageChange}
+      />
     </Container>
   );
 };
