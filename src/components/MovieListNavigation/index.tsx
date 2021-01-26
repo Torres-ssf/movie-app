@@ -1,17 +1,21 @@
 import React from 'react';
+import { SearchContainer } from '../SearchContainer';
 
 import { SortType } from '../../pages/Main';
-
-import { Container, ListItem } from './styles';
+import { Container, ListItem, Button } from './styles';
 
 interface IProps {
   selectedSortType: SortType;
+  searchValue: string;
   handleSortTypeChange: (type: SortType) => void;
+  handleSearchValueChange: (value: string) => void;
 }
 
 export const MovieListNavigation: React.FC<IProps> = ({
   selectedSortType,
+  searchValue,
   handleSortTypeChange,
+  handleSearchValueChange,
 }) => {
   return (
     <Container>
@@ -30,35 +34,39 @@ export const MovieListNavigation: React.FC<IProps> = ({
 
       <ul>
         <ListItem selected={selectedSortType === 'popular'}>
-          <button type="button" onClick={() => handleSortTypeChange('popular')}>
+          <Button type="button" onClick={() => handleSortTypeChange('popular')}>
             Popular
-          </button>
+          </Button>
         </ListItem>
         <ListItem selected={selectedSortType === 'top_rated'}>
-          <button
+          <Button
             type="button"
             onClick={() => handleSortTypeChange('top_rated')}
           >
             Top Rated
-          </button>
+          </Button>
         </ListItem>
         <ListItem selected={selectedSortType === 'upcoming'}>
-          <button
+          <Button
             type="button"
             onClick={() => handleSortTypeChange('upcoming')}
           >
             Upcoming
-          </button>
+          </Button>
         </ListItem>
         <ListItem selected={selectedSortType === 'now_playing'}>
-          <button
+          <Button
             type="button"
             onClick={() => handleSortTypeChange('now_playing')}
           >
             Now Playing
-          </button>
+          </Button>
         </ListItem>
       </ul>
+      <SearchContainer
+        searchValue={searchValue}
+        handleSearchValueChange={handleSearchValueChange}
+      />
     </Container>
   );
 };
