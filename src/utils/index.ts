@@ -12,8 +12,12 @@ export const formatCardGenresString = (genresArray: number[]): string => {
   return 'Genre not specified';
 };
 
-export const getImageUrl = (path: string): string => {
+export const randomANumber = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+export const formatImageUrl = (path: string, size = 'w342'): string => {
   const imageBaseUrl = process.env.REACT_APP_API_IMAGE_URL;
 
-  return `${imageBaseUrl}/w342/${path}`;
+  return `${imageBaseUrl}/${size}/${path}`;
 };
