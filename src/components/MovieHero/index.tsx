@@ -1,7 +1,13 @@
 import React, { useMemo } from 'react';
 import { formatImageUrl, extractGenres } from '../../utils';
 
-import { Container, MovieInfo, Poster } from './styles';
+import {
+  Container,
+  MovieInfo,
+  MovieInfoContainer,
+  MovieRating,
+  Poster,
+} from './styles';
 
 import ImagePlaceholder from '../../assets/image-placeholder.png';
 
@@ -46,14 +52,17 @@ export const MovieHero: React.FC<IProps> = ({
 
   return (
     <Container backdropUrl={imageUrl}>
-      <MovieInfo>
+      <MovieInfoContainer>
         {posterImage}
-        <div>
+        <MovieInfo>
           <h1>{title}</h1>
-          {genresList}
+          <div>
+            <MovieRating rating={voteAvarage}>{voteAvarage}</MovieRating>
+            {genresList}
+          </div>
           <p>{overview}</p>
-        </div>
-      </MovieInfo>
+        </MovieInfo>
+      </MovieInfoContainer>
     </Container>
   );
 };
