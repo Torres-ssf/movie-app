@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { api } from '../../server/api';
 
+import { MovieHero } from '../../components/MovieHero';
 import { MovieListNavigation } from '../../components/MovieListNavigation';
 import { MovieCard } from '../../components/MovieCard';
 
 import { Container, MovieList } from './styles';
+import { randomANumber } from '../../utils';
 
 export type SortType =
   | 'popular'
@@ -20,11 +22,14 @@ interface IMovieProperties {
   poster_path: string;
   backdrop_path: string;
   genre_ids: Array<number>;
+  overview: string;
   vote_average: number;
 }
 
 export const Main: React.FC = () => {
   const [movies, setMovies] = useState([] as IMovieProperties[]);
+
+  const [movieHero, setMovieHero] = useState({} as IMovieProperties);
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -46,9 +51,13 @@ export const Main: React.FC = () => {
 
       const { results } = data;
 
-      setTotalPages(data.total_pages);
+      if (movies.length === 0) {
+        setMovieHero(results[randomANumber(0, 19)]);
+      }
 
       setMovies(results);
+
+      setTotalPages(data.total_pages);
     };
 
     fetchMovieData();
@@ -93,7 +102,6 @@ export const Main: React.FC = () => {
   const movieList = movies.map(movie => (
     <li key={movie.id}>
       <MovieCard
-        id={movie.id}
         title={movie.title}
         genres={movie.genre_ids}
         posterPath={movie.poster_path}
@@ -104,7 +112,14 @@ export const Main: React.FC = () => {
 
   return (
     <Container>
-      <h1>Movie App</h1>
+      <MovieHero
+        title={movieHero.title}
+        posterPath={movieHero.poster_path}
+        backdropPath={movieHero.backdrop_path}
+        genres={movieHero.genre_ids}
+        overview={movieHero.overview}
+        voteAvarage={movieHero.vote_average}
+      />
 
       <MovieListNavigation
         searchValue={searchValue}
