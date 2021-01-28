@@ -1,6 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
+  section:first-of-type {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  section + section {
+    margin-top: 10px;
+    padding: 20px 40px;
+
+    @media (max-width: 1500px) {
+      padding: 20px;
+    }
+
+    @media (max-width: 900px) {
+      padding: 10px;
+    }
+  }
+
   .paginatate-list {
     display: flex;
     margin: 10px 0 0;
