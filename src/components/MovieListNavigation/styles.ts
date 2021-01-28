@@ -36,7 +36,6 @@ export const Container = styled.nav`
     }
 
     select {
-      order: 1;
       display: flex;
       margin-top: 4px;
       margin-bottom: 10px;
