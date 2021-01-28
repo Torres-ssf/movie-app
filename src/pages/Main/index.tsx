@@ -112,36 +112,40 @@ export const Main: React.FC = () => {
 
   return (
     <Container>
-      <MovieHero
-        title={movieHero.title}
-        posterPath={movieHero.poster_path}
-        backdropPath={movieHero.backdrop_path}
-        genres={movieHero.genre_ids}
-        overview={movieHero.overview}
-        voteAvarage={movieHero.vote_average}
-      />
+      <section>
+        <MovieHero
+          title={movieHero.title}
+          posterPath={movieHero.poster_path}
+          backdropPath={movieHero.backdrop_path}
+          genres={movieHero.genre_ids}
+          overview={movieHero.overview}
+          voteAvarage={movieHero.vote_average}
+        />
+      </section>
 
-      <MovieListNavigation
-        searchValue={searchValue}
-        selectedSortType={sortType}
-        handleSortTypeChange={handleSortTypeChange}
-        handleSearchValueChange={handleSearchValueChange}
-      />
-      <MovieList>{movieList}</MovieList>
+      <section>
+        <MovieListNavigation
+          searchValue={searchValue}
+          selectedSortType={sortType}
+          handleSortTypeChange={handleSortTypeChange}
+          handleSearchValueChange={handleSearchValueChange}
+        />
+        <MovieList>{movieList}</MovieList>
 
-      <ReactPaginate
-        containerClassName="paginatate-list"
-        previousLabel="back"
-        nextLabel="next"
-        breakLabel="..."
-        breakClassName="break-me"
-        pageCount={totalPages}
-        forcePage={currentPage - 1}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
-        activeClassName="active"
-        onPageChange={handlePageChange}
-      />
+        <ReactPaginate
+          containerClassName="paginatate-list"
+          previousLabel="back"
+          nextLabel="next"
+          breakLabel="..."
+          breakClassName="break-me"
+          pageCount={totalPages}
+          forcePage={currentPage - 1}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          activeClassName="active"
+          onPageChange={handlePageChange}
+        />
+      </section>
     </Container>
   );
 };
