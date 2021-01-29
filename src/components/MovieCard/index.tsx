@@ -1,4 +1,7 @@
 import React, { useMemo, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import { ViewLoader } from '../ViewLoader';
 
 import { extractGenresToString, formatImageUrl } from '../../utils';
 
@@ -20,6 +23,7 @@ export const MovieCard: React.FC<IProps> = ({
   voteAvarage,
 }) => {
   const [moviePosterPath, setMoviePosterPath] = useState(posterPath);
+  const [loading, setLoading] = useState(true);
 
   const movieImage = useMemo(() => {
     if (moviePosterPath) {
@@ -34,9 +38,11 @@ export const MovieCard: React.FC<IProps> = ({
   return (
     <Container hasCoverImage={!!moviePosterPath}>
       <figure>
-        <img
+        {loading && <ViewLoader />}
+        <LazyLoadImage
           src={movieImage}
           alt={title}
+          onLoad={() => setLoading(false)}
           onError={() => setMoviePosterPath(CardPlaceholder)}
         />
       </figure>
