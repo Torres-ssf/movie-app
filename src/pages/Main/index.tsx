@@ -8,6 +8,7 @@ import { MovieCard } from '../../components/MovieCard';
 
 import { Container, MovieList } from './styles';
 import { randomANumber } from '../../utils';
+import LoadingContainer from '../../components/LoadingContainer';
 
 export type SortType =
   | 'popular'
@@ -39,6 +40,8 @@ export const Main: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchMovieData = async () => {
       const response = await api.get(`movie/${sortType}`, {
@@ -58,6 +61,10 @@ export const Main: React.FC = () => {
       setMovies(results);
 
       setTotalPages(data.total_pages);
+
+      if (loading) {
+        setLoading(false);
+      }
     };
 
     fetchMovieData();
@@ -109,6 +116,10 @@ export const Main: React.FC = () => {
       />
     </li>
   ));
+
+  if (loading) {
+    return <LoadingContainer />;
+  }
 
   return (
     <Container>
