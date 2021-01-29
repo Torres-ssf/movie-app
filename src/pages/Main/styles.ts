@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
+  max-width: 1920px;
+  min-width: 400px;
+
   section:first-of-type {
     @media (max-width: 600px) {
       display: none;
@@ -83,6 +86,11 @@ export const MovieList = styled.ul`
   }
 
   @media (max-width: 500px) {
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr 342px 1fr;
+
+    li {
+      grid-column-start: 2;
+      grid-column-end: 3;
+    }
   }
 `;
