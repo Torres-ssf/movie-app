@@ -48,9 +48,17 @@ A webpage that consumes [The Movie Database API](https://developers.themoviedb.o
 
 - Milestone 2: Implement Main page. **(completed)**
 
-- Milestone 3: Implement Movie Detail page. **(current)**
+- Milestone 3: Implement Movie Detail page. **(ongoing)**
 
 - Milestone 4: Add Redux to state management.
+
+## Features
+
+- You can sort movies by `popular`, `top-rated`, `upcoming`, and `now-playing`, all supported from [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
+
+- You can change the page to navigate between all movies fetched from the API.
+
+- You can input text to search for a specific movie title.
 
 ## Live Demo
 
