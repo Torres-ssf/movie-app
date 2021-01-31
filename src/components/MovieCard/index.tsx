@@ -42,6 +42,7 @@ export const MovieCard: React.FC<IProps> = ({
         <LazyLoadImage
           src={movieImage}
           alt={title}
+          threshold={400}
           onLoad={() => setLoading(false)}
           onError={() => setMoviePosterPath(CardPlaceholder)}
         />
