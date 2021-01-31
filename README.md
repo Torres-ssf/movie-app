@@ -42,7 +42,15 @@
 
 <!-- ![](screen1.png) -->
 
-A webpage where you can find out everything about your favorite movies.
+A webpage that uses [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) to display information about movies. The implementation of this project is divided into the following Milestones. 
+
+- Milestone 1: Project set up. **(completed)**
+
+- Milestone 2: Implement Main page. **(completed)**
+
+- Milestone 3: Implement Movie Detail page. **(current)**
+
+- Milestone 4: Add Redux to state management.
 
 ## Live Demo
 
