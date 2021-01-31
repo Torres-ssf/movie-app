@@ -1,13 +1,12 @@
 import React, { useMemo, useState } from 'react';
 
-import { formatCardGenresString, getImageUrl } from '../../utils';
+import { extractGenresToString, formatImageUrl } from '../../utils';
 
 import { Container, GenreContainer, MovieRate } from './styles';
 
 import CardPlaceholder from '../../assets/moviecard-placeholder.png';
 
 interface IProps {
-  id: number;
   title: string;
   genres: Array<number>;
   posterPath: string | null;
@@ -24,13 +23,13 @@ export const MovieCard: React.FC<IProps> = ({
 
   const movieImage = useMemo(() => {
     if (moviePosterPath) {
-      return getImageUrl(moviePosterPath);
+      return formatImageUrl({ path: moviePosterPath });
     }
 
     return CardPlaceholder;
   }, [moviePosterPath]);
 
-  const genreString = formatCardGenresString(genres);
+  const genreString = extractGenresToString(genres);
 
   return (
     <Container hasCoverImage={!!moviePosterPath}>
