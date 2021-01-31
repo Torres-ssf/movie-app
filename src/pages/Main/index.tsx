@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { api } from '../../server/api';
 
@@ -42,6 +42,8 @@ export const Main: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
 
+  const movieContainerRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     const fetchMovieData = async () => {
       const response = await api.get(`movie/${sortType}`, {
@@ -57,6 +59,9 @@ export const Main: React.FC = () => {
       if (movies.length === 0) {
         setMovieHero(results[randomANumber(0, 19)]);
       }
+
+      console.log(results);
+      console.log(data.page);
 
       setMovies(results);
 
@@ -104,6 +109,10 @@ export const Main: React.FC = () => {
 
   const handlePageChange = useCallback(({ selected: pageSelected }) => {
     setCurrentPage(pageSelected + 1);
+
+    if (movieContainerRef.current) {
+      movieContainerRef.current.scrollIntoView();
+    }
   }, []);
 
   const movieList = movies.map(movie => (
@@ -134,7 +143,7 @@ export const Main: React.FC = () => {
         />
       </section>
 
-      <section>
+      <section ref={movieContainerRef}>
         <MovieListNavigation
           searchValue={searchValue}
           selectedSortType={sortType}
