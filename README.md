@@ -11,9 +11,9 @@
   <h3 align="center">Movie App</h3>
 
   <p align="center">
-    A webpage where you can read everything about your favorite movies.
+    A webpage that display information about movies.
     <br />
-    <a href="">Live demo(SOON)</a>
+    <a href="https://movieapp.torres-ssf.com/">Live demo</a>
     ·
     <a href="https://github.com/Torres-ssf/movie-app/issues">Report Bug</a>
     ·
@@ -40,9 +40,9 @@
 
 ## About The Project
 
-<!-- ![](screen1.png) -->
+![](/src/assets/app-screenshot.png)
 
-A webpage that uses [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) to display information about movies. The implementation of this project is divided into the following Milestones. 
+A webpage that consumes [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) to display information about movies. The implementation of this project is divided into the following Milestones. 
 
 - Milestone 1: Project set up. **(completed)**
 
@@ -54,7 +54,7 @@ A webpage that uses [The Movie Database API](https://developers.themoviedb.org/3
 
 ## Live Demo
 
-Soon.
+[movie-app](https://movieapp.torres-ssf.com/).
 
 ### Built With
 
