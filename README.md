@@ -54,7 +54,7 @@ A webpage that consumes [The Movie Database API](https://developers.themoviedb.o
 
 ## Live Demo
 
-[movie-app](https://movieapp.torres-ssf.com/).
+[movie-app](https://movieapp.torres-ssf.com/)
 
 ### Built With
 
@@ -98,6 +98,11 @@ cd movie-app/
 ```sh
 yarn
 ```
+
+4. Make a copy of the `env.example` file and change its name to just `.env`. Now we need to setup your API SECRET from The Movie Database webpage.
+ 1 - First go the signup page [here](https://www.themoviedb.org/signup).
+ 2 - After setting up you account and signin go to your [config api page](https://www.themoviedb.org/settings/api) and copy your API Read Access Token (v4 auth) key.
+ 3 - Now go back to the `.env` file and add the value of the copied key to the variable `REACT_APP_API_SECRET`. That's it, the application is now ready to be used.
 
 ## Usage
 
