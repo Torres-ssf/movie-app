@@ -60,12 +60,14 @@ A webpage that consumes [The Movie Database API](https://developers.themoviedb.o
 
 The project was built using the following languages stacks:
 
-```sh
-Front-End(client-side)
-```
-
-- [React](https://github.com/facebook/react)
-- Typescript
+- [react](https://github.com/facebook/react)
+- [typescript](https://www.npmjs.com/package/typescript)
+- [axios](https://www.npmjs.com/package/axios)
+- [styled-components](https://github.com/styled-components/styled-components)
+- [react-icons](https://github.com/react-icons/react-icons#readme)
+- [react-paginate](https://www.npmjs.com/package/react-paginate)
+- [react-content-loader](https://www.npmjs.com/package/react-content-loader)
+- [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component)
 
 <!-- GETTING STARTED -->
 
