@@ -11,9 +11,9 @@
   <h3 align="center">Movie App</h3>
 
   <p align="center">
-    A webpage where you can read everything about your favorite movies.
+    A webpage that display information about movies.
     <br />
-    <a href="">Live demo(SOON)</a>
+    <a href="https://movieapp.torres-ssf.com/">Live demo</a>
     ·
     <a href="https://github.com/Torres-ssf/movie-app/issues">Report Bug</a>
     ·
@@ -40,24 +40,42 @@
 
 ## About The Project
 
-<!-- ![](screen1.png) -->
+![](/src/assets/app-screenshot.png)
 
-A webpage where you can find out everything about your favorite movies.
+A webpage that consumes [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) to display information about movies. The implementation of this project is divided into the following Milestones. 
+
+- Milestone 1: Project set up. **(completed)**
+
+- Milestone 2: Implement Main page. **(completed)**
+
+- Milestone 3: Implement Movie Detail page. **(ongoing)**
+
+- Milestone 4: Add Redux to state management.
+
+## Features
+
+- You can sort movies by `popular`, `top-rated`, `upcoming`, and `now-playing`, all supported from [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
+
+- You can change the page to navigate between all movies fetched from the API.
+
+- You can input text to search for a specific movie title.
 
 ## Live Demo
 
-Soon.
+[movie-app](https://movieapp.torres-ssf.com/)
 
 ### Built With
 
 The project was built using the following languages stacks:
 
-```sh
-Front-End(client-side)
-```
-
-- [React](https://github.com/facebook/react)
-- Typescript
+- [react](https://github.com/facebook/react)
+- [typescript](https://www.npmjs.com/package/typescript)
+- [axios](https://www.npmjs.com/package/axios)
+- [styled-components](https://github.com/styled-components/styled-components)
+- [react-icons](https://github.com/react-icons/react-icons#readme)
+- [react-paginate](https://www.npmjs.com/package/react-paginate)
+- [react-content-loader](https://www.npmjs.com/package/react-content-loader)
+- [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component)
 
 <!-- GETTING STARTED -->
 
@@ -88,6 +106,11 @@ cd movie-app/
 ```sh
 yarn
 ```
+
+4. Make a copy of the `env.example` file and change its name to just `.env`. Now we need to setup your API SECRET from The Movie Database webpage.
+ - First go the signup page [here](https://www.themoviedb.org/signup).
+ - After setting up you account and signin go to your [config api page](https://www.themoviedb.org/settings/api) and copy your API Read Access Token (v4 auth) key.
+ - Now go back to the `.env` file and add the value of the copied key to the variable `REACT_APP_API_SECRET`. That's it, the application is now ready to be used.
 
 ## Usage
 
