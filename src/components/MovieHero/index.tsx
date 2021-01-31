@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+
 import { formatImageUrl, extractGenres } from '../../utils';
 
 import {
@@ -28,6 +29,8 @@ export const MovieHero: React.FC<IProps> = ({
   overview,
   voteAvarage,
 }) => {
+  const [posterPathState, setPosterPathState] = useState(posterPath);
+
   const imageUrl = formatImageUrl({ path: backdropPath, size: 'original' });
 
   const genresList = useMemo(() => {
@@ -43,12 +46,20 @@ export const MovieHero: React.FC<IProps> = ({
   }, [genres]);
 
   const posterImage = useMemo(() => {
-    const posterUrl = posterPath
-      ? formatImageUrl({ path: posterPath })
+    const posterUrl = posterPathState
+      ? formatImageUrl({ path: posterPathState })
       : ImagePlaceholder;
 
-    return <Poster src={posterUrl} alt={`${title} image cover`} />;
-  }, [title, posterPath]);
+    return (
+      <Poster
+        src={posterUrl}
+        alt={`${title} cover image`}
+        onError={() => {
+          setPosterPathState(ImagePlaceholder);
+        }}
+      />
+    );
+  }, [title, posterPathState]);
 
   return (
     <Container backdropUrl={imageUrl}>

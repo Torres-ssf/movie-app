@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { api } from '../../server/api';
 
@@ -8,6 +8,7 @@ import { MovieCard } from '../../components/MovieCard';
 
 import { Container, MovieList } from './styles';
 import { randomANumber } from '../../utils';
+import LoadingContainer from '../../components/LoadingContainer';
 
 export type SortType =
   | 'popular'
@@ -39,6 +40,10 @@ export const Main: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [loading, setLoading] = useState(true);
+
+  const movieContainerRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     const fetchMovieData = async () => {
       const response = await api.get(`movie/${sortType}`, {
@@ -55,9 +60,16 @@ export const Main: React.FC = () => {
         setMovieHero(results[randomANumber(0, 19)]);
       }
 
+      console.log(results);
+      console.log(data.page);
+
       setMovies(results);
 
       setTotalPages(data.total_pages);
+
+      if (loading) {
+        setLoading(false);
+      }
     };
 
     fetchMovieData();
@@ -97,6 +109,10 @@ export const Main: React.FC = () => {
 
   const handlePageChange = useCallback(({ selected: pageSelected }) => {
     setCurrentPage(pageSelected + 1);
+
+    if (movieContainerRef.current) {
+      movieContainerRef.current.scrollIntoView();
+    }
   }, []);
 
   const movieList = movies.map(movie => (
@@ -110,38 +126,46 @@ export const Main: React.FC = () => {
     </li>
   ));
 
+  if (loading) {
+    return <LoadingContainer />;
+  }
+
   return (
     <Container>
-      <MovieHero
-        title={movieHero.title}
-        posterPath={movieHero.poster_path}
-        backdropPath={movieHero.backdrop_path}
-        genres={movieHero.genre_ids}
-        overview={movieHero.overview}
-        voteAvarage={movieHero.vote_average}
-      />
+      <section>
+        <MovieHero
+          title={movieHero.title}
+          posterPath={movieHero.poster_path}
+          backdropPath={movieHero.backdrop_path}
+          genres={movieHero.genre_ids}
+          overview={movieHero.overview}
+          voteAvarage={movieHero.vote_average}
+        />
+      </section>
 
-      <MovieListNavigation
-        searchValue={searchValue}
-        selectedSortType={sortType}
-        handleSortTypeChange={handleSortTypeChange}
-        handleSearchValueChange={handleSearchValueChange}
-      />
-      <MovieList>{movieList}</MovieList>
+      <section ref={movieContainerRef}>
+        <MovieListNavigation
+          searchValue={searchValue}
+          selectedSortType={sortType}
+          handleSortTypeChange={handleSortTypeChange}
+          handleSearchValueChange={handleSearchValueChange}
+        />
+        <MovieList>{movieList}</MovieList>
 
-      <ReactPaginate
-        containerClassName="paginatate-list"
-        previousLabel="back"
-        nextLabel="next"
-        breakLabel="..."
-        breakClassName="break-me"
-        pageCount={totalPages}
-        forcePage={currentPage - 1}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
-        activeClassName="active"
-        onPageChange={handlePageChange}
-      />
+        <ReactPaginate
+          containerClassName="paginatate-list"
+          previousLabel="back"
+          nextLabel="next"
+          breakLabel="..."
+          breakClassName="break-me"
+          pageCount={totalPages}
+          forcePage={currentPage - 1}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          activeClassName="active"
+          onPageChange={handlePageChange}
+        />
+      </section>
     </Container>
   );
 };

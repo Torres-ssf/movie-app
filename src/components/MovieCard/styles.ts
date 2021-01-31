@@ -7,8 +7,8 @@ interface IContainerProps {
 export const Container = styled.article<IContainerProps>`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  height: 100%;
   position: relative;
-  margin: 10px;
   overflow: hidden;
   transition: 500ms;
 

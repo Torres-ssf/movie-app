@@ -14,6 +14,18 @@ export const Container = styled.div<IContainerProps>`
   background-size: 100% 100%, cover;
   position: relative;
   padding-top: 120px;
+
+  @media (max-width: 1100px) {
+    padding-top: 90px;
+  }
+
+  @media (max-width: 900px) {
+    padding-top: 60px;
+  }
+
+  @media (max-width: 800px) {
+    padding-top: 0;
+  }
 `;
 
 export const MovieInfoContainer = styled.div`
@@ -33,6 +45,10 @@ export const MovieInfoContainer = styled.div`
   @media (max-width: 1200px) {
     width: 90%;
   }
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const MovieInfo = styled.div`
@@ -42,8 +58,15 @@ export const MovieInfo = styled.div`
     margin-left: 40px;
   }
 
+  @media (max-width: 900px) {
+    margin-left: 20px;
+  }
+
   div {
+    align-items: center;
     display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
 
     span {
       margin-right: 20px;
@@ -51,16 +74,20 @@ export const MovieInfo = styled.div`
 
     ul {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      margin-top: 10px;
 
       li {
         background: #3899bf;
         border-radius: 50px;
         font-size: 0.8rem;
         font-weight: 500;
-        margin-right: 12px;
+        margin: 10px 12px 10px 0;
         padding: 6px;
+
+        @media (max-width: 900px) {
+          padding: 4px;
+        }
       }
     }
   }
@@ -80,6 +107,13 @@ export const MovieInfo = styled.div`
     @media (max-width: 1300px) {
       font-size: 2.6rem;
     }
+
+    @media (max-width: 1000px) {
+      font-size: 2.2rem;
+    }
+    @media (max-width: 880px) {
+      font-size: 2rem;
+    }
   }
 
   p {
@@ -97,7 +131,13 @@ export const MovieInfo = styled.div`
     }
 
     @media (max-width: 900px) {
-      font-size: 1rem;
+      font-size: 0.9rem;
+      -webkit-line-clamp: 6;
+    }
+
+    @media (max-width: 700px) {
+      font-size: 0.9rem;
+      -webkit-line-clamp: 4;
     }
   }
 `;
@@ -106,6 +146,16 @@ export const Poster = styled.img`
   border-radius: 12px 12px 0 0;
   height: 450px;
   width: 300px;
+
+  @media (max-width: 900px) {
+    height: 375px;
+    width: 250px;
+  }
+
+  @media (max-width: 700px) {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 4;
+  }
 `;
 
 export const MovieRating = styled.span<IRatingParams>`
@@ -116,7 +166,6 @@ export const MovieRating = styled.span<IRatingParams>`
   font-size: 1.5rem;
   font-weight: 700;
   justify-content: center;
-  margin-top: 12px;
   width: 48px;
   height: 48px;
   background-color: ${props => {
@@ -130,4 +179,10 @@ export const MovieRating = styled.span<IRatingParams>`
 
     return '#F31700';
   }};
+
+  @media (max-width: 900px) {
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+  }
 `;
