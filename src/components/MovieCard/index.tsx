@@ -36,7 +36,7 @@ export const MovieCard: React.FC<IProps> = ({
   const genreString = extractGenresToString(genres);
 
   return (
-    <Container hasCoverImage={!!moviePosterPath}>
+    <Container>
       <figure>
         {loading && <ViewLoader />}
         <LazyLoadImage
