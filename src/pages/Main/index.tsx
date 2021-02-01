@@ -72,7 +72,7 @@ export const Main: React.FC = () => {
 
       fetchMovieData();
     }
-  }, [sortType, currentPage]);
+  }, [sortType, currentPage, loading, movies.length]);
 
   useEffect(() => {
     if (searchValue !== '') {
@@ -97,7 +97,13 @@ export const Main: React.FC = () => {
 
   const handleSearchValueChange = useCallback((value: string) => {
     setCurrentPage(1);
-    setSortType('unselected');
+
+    if (value === '') {
+      setSortType('popular');
+    } else {
+      setSortType('unselected');
+    }
+
     setSearchValue(value);
   }, []);
 
