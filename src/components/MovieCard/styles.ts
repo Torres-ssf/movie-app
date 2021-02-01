@@ -1,10 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface IContainerProps {
-  hasCoverImage: boolean;
-}
-
-export const Container = styled.article<IContainerProps>`
+export const Container = styled.article`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   height: 100%;
@@ -15,20 +11,6 @@ export const Container = styled.article<IContainerProps>`
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-
-  ${props => {
-    if (props.hasCoverImage) {
-      return css`
-        &:hover footer {
-          transform: translateY(100%);
-          opacity: 0;
-        }
-      `;
-    }
-    return css`
-      background-color: #3899bf;
-    `;
-  }}
 
   figure {
     img {

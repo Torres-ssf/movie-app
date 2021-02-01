@@ -45,35 +45,34 @@ export const Main: React.FC = () => {
   const movieContainerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const fetchMovieData = async () => {
-      const response = await api.get(`movie/${sortType}`, {
-        params: {
-          page: currentPage,
-        },
-      });
+    if (sortType !== 'unselected') {
+      const fetchMovieData = async () => {
+        const response = await api.get(`movie/${sortType}`, {
+          params: {
+            page: currentPage,
+          },
+        });
 
-      const { data } = response;
+        const { data } = response;
 
-      const { results } = data;
+        const { results } = data;
 
-      if (movies.length === 0) {
-        setMovieHero(results[randomANumber(0, 19)]);
-      }
+        if (movies.length === 0) {
+          setMovieHero(results[randomANumber(0, 19)]);
+        }
 
-      console.log(results);
-      console.log(data.page);
+        setMovies(results);
 
-      setMovies(results);
+        setTotalPages(data.total_pages);
 
-      setTotalPages(data.total_pages);
+        if (loading) {
+          setLoading(false);
+        }
+      };
 
-      if (loading) {
-        setLoading(false);
-      }
-    };
-
-    fetchMovieData();
-  }, [sortType, currentPage]);
+      fetchMovieData();
+    }
+  }, [sortType, currentPage, loading, movies.length]);
 
   useEffect(() => {
     if (searchValue !== '') {
@@ -98,7 +97,13 @@ export const Main: React.FC = () => {
 
   const handleSearchValueChange = useCallback((value: string) => {
     setCurrentPage(1);
-    setSortType('unselected');
+
+    if (value === '') {
+      setSortType('popular');
+    } else {
+      setSortType('unselected');
+    }
+
     setSearchValue(value);
   }, []);
 
