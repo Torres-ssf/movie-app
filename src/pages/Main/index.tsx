@@ -109,6 +109,7 @@ export const Main: React.FC = () => {
 
   const handleSortTypeChange = useCallback((type: SortType) => {
     setCurrentPage(1);
+    setSearchValue('');
     setSortType(type);
   }, []);
 
